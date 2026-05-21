@@ -147,10 +147,11 @@ if st.button('Predict Selling Price'):
 
         'log_km_Driven'
     ]
-    scaled_values = sc.transform(
-    input_df[num_cols])
+    input_df[num_cols] = pd.DataFrame(
+    sc.transform(input_df[num_cols]),
+    columns=num_cols,
+    index=input_df.index)
 
-    input_df.loc[:, num_cols] = scaled_values
     input_df = input_df.astype(float)
     # st.write(input_df)
 
